@@ -51,7 +51,7 @@ class PrimaryButton extends StatelessWidget {
                       height: 24,
                       width: 24,
                       child: CircularProgressIndicator(
-                        backgroundColor: AppColors.white,
+                        backgroundColor: AppColors.green,
                       ),
                     ),
                   )

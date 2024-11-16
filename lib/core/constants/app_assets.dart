@@ -11,7 +11,12 @@ class AppAssets {
   static String star = "$iconPath/star.svg";
   static String messages = "$iconPath/messages.svg";
   static String options = "$iconPath/options.svg";
+  static String speak = "$iconPath/speak.svg";
+  static String session2 = "$iconPath/session2.svg";
+  static String cancel = "$iconPath/cancel.svg";
+  static String outlinedChats = "$iconPath/oulined_message.svg";
 
   //images
   static String logo = "$imagePath/logo.png";
+  static String goodMorning = "$imagePath/goodmorning.png";
 }
