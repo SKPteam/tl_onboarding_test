@@ -29,6 +29,7 @@ class ChatController extends GetxController {
       final chat = await chatRepository.createNewChat(
           consultantId: consultantId, clientId: clientId);
 
+
       if (chat != null) {
         final updatedChats = [...state.chats, chat];
         _state.value = state.copyWith(
