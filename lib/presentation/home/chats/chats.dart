@@ -3,6 +3,7 @@ import 'package:flutter_firebase_test/core/app_widgets/app_button.dart';
 import 'package:flutter_firebase_test/core/constants/app_assets.dart';
 import 'package:flutter_firebase_test/core/constants/app_colors.dart';
 import 'package:flutter_firebase_test/core/constants/extensions/extensions.dart';
+import 'package:flutter_firebase_test/data/models/create_chat.dart';
 import 'package:flutter_firebase_test/data/repositories/chat.dart';
 import 'package:flutter_firebase_test/presentation/home/bottom_nav/bottom_nav.dart';
 import 'package:flutter_firebase_test/presentation/home/chats/chat_controller.dart';
@@ -10,25 +11,26 @@ import 'package:flutter_firebase_test/presentation/home/chats/widgets/suggestion
 import 'package:flutter_firebase_test/presentation/home/chats/widgets/suggestion_chips_controler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Chats extends GetView<ChatController> {
+  // final CreateChat chat;
   final SuggestionChipsController control =
       Get.put(SuggestionChipsController()); // Initialize controller
 
   final List<String> chipTitles = [
-    "Technology",
-    "Health",
-    "Education",
-    "Sports",
-    "Art",
-    "Music",
+    "Anxiety",
+    "Job/Career/Workplace",
+    "Trauma",
+    "Stress management",
+    "Sleep",
+    "Mental blocks",
   ];
 
-  Chats({super.key});
+  Chats({
+    super.key,
+    // required this.chat
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -85,19 +87,8 @@ class Chats extends GetView<ChatController> {
                       controller.state.errorMessage ?? 'An error occurred'),
                 );
               }
-              return Container();
 
-              // return ListView.builder(
-              //   itemCount: controller.chats.length,
-              //   itemBuilder: (context, index) {
-              //     final chat = controller.chats[index];
-              //     return ListTile(
-              //       title: Text('Chat ${chat.id}'),
-              //       subtitle:
-              //           Text('With consultant: ${chat.consultant?.fName}'),
-              //     );
-              //   },
-              // );
+              return Text('C');
             }),
             Wrap(
                 spacing: 10,
@@ -113,7 +104,7 @@ class Chats extends GetView<ChatController> {
                       title: chipTitles[index]));
                 })),
             const SizedBox(
-              height: 450,
+              height: 200,
             ),
             PrimaryButton(
               onPressed: () {},

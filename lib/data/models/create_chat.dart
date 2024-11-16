@@ -31,23 +31,6 @@ class CreateChat {
     client =
         json['client'] != null ? new Client.fromJson(json['client']) : null;
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['client_id'] = this.clientId;
-    data['consultant_id'] = this.consultantId;
-    data['channel'] = this.channel;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    if (this.consultant != null) {
-      data['consultant'] = this.consultant!.toJson();
-    }
-    if (this.client != null) {
-      data['client'] = this.client!.toJson();
-    }
-    return data;
-  }
 }
 
 class Consultant {
@@ -63,15 +46,6 @@ class Consultant {
     fName = json['f_name'];
     lName = json['l_name'];
     avatarUrl = json['avatar_url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['f_name'] = this.fName;
-    data['l_name'] = this.lName;
-    data['avatar_url'] = this.avatarUrl;
-    return data;
   }
 }
 
@@ -90,15 +64,5 @@ class Client {
     lName = json['l_name'];
     displayName = json['display_name'];
     avatarUrl = json['avatar_url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['f_name'] = this.fName;
-    data['l_name'] = this.lName;
-    data['display_name'] = this.displayName;
-    data['avatar_url'] = this.avatarUrl;
-    return data;
   }
 }

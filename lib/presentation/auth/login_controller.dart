@@ -26,7 +26,7 @@ class LoginController extends GetxController {
       if (result != null) {
         user.value = result;
         Get.snackbar("Success", "Login succesful");
-        Get.offNamed('/bottomNav');
+        Get.offNamed('/bottomNav', arguments: result);
       } else {
         Get.snackbar('Error', 'Login failed. Please try again.');
       }

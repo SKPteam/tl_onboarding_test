@@ -27,9 +27,9 @@ class SuggestionChips extends StatelessWidget {
         child: Text(
           title,
           style: GoogleFonts.josefinSans(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
-          ),
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: isSelected ? AppColors.white : AppColors.black),
         ),
       ),
     );

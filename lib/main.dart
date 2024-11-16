@@ -8,20 +8,14 @@ import 'package:flutter_firebase_test/presentation/home/bottom_nav/bottom_nav.da
 import 'package:flutter_firebase_test/presentation/home/bottom_nav/bottom_nav_controller.dart';
 import 'package:flutter_firebase_test/presentation/home/chats/chat_controller.dart';
 import 'package:flutter_firebase_test/presentation/home/chats/chats.dart';
-import 'package:flutter_firebase_test/presentation/home/chats/widgets/suggestion_chips_controler.dart';
 import 'package:flutter_firebase_test/presentation/home/home_page/home_page.dart';
 import 'package:flutter_firebase_test/presentation/home/home_page/home_page_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
   setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
-  Get.put(LoginController());
-  Get.put(BottomNavController());
-  Get.put(HomePageController());
-  Get.put(ChatController());
-  Get.put(SuggestionChipsController());
+
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       //systemNavigationBarColor: AppColors.black,
       statusBarColor: AppColors.white));
@@ -35,8 +29,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      //initialBinding: LoginBinding(),
-      title: 'Flutter Demo',
+      initialBinding: BindingsBuilder(() {
+        Get.lazyPut(() => HomePageController());
+        Get.lazyPut(() => LoginController());
+        Get.lazyPut(() => BottomNavController());
+        Get.lazyPut(() => ChatController());
+      }),
+      //  title: 'Flutter Demo',
       theme: ThemeData(
         progressIndicatorTheme:
             const ProgressIndicatorThemeData(color: AppColors.green),

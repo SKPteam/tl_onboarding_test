@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_test/core/constants/app_assets.dart';
 import 'package:flutter_firebase_test/core/constants/app_colors.dart';
+import 'package:flutter_firebase_test/data/login_user.dart';
 import 'package:flutter_firebase_test/presentation/home/bottom_nav/bottom_nav_controller.dart';
+import 'package:flutter_firebase_test/presentation/home/chats/chat_controller.dart';
+import 'package:flutter_firebase_test/presentation/home/chats/chats.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -18,8 +21,10 @@ class BottomNav extends GetView<BottomNavController> {
       resizeToAvoidBottomInset: true,
       floatingActionButton: CustomSpeedDial(
           currentIndex: controller.currentIndex,
-          onChatTap: () {
-            Get.toNamed("/chatbot");
+          onChatTap: () async {
+            final chatController = await Get.find<ChatController>();
+            chatController.createChat(clientId: 1, consultantId: 2);
+            Get.to(Chats());
           },
           onScheduleTap: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
