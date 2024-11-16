@@ -89,18 +89,6 @@ class Chats extends GetView<ChatController> {
               }
 
               return Text('C');
-
-              //   return ListView.builder(
-              //     itemCount: controller.chats.length,
-              //     itemBuilder: (context, index) {
-              //       final chat = controller.chats[index];
-              //       return ListTile(
-              //         title: Text('Chat ${chat.id}'),
-              //         subtitle:
-              //             Text('With consultant: ${chat.consultant?.fName}'),
-              //       );
-              //     },
-              //   );
             }),
             Wrap(
                 spacing: 10,
