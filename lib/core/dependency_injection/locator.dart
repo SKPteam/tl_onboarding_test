@@ -11,7 +11,7 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => LoginUserService());
   locator.registerLazySingleton(() => UserRepository());
   locator.registerLazySingleton(() => ApiUtils());
-  locator.registerLazySingleton(() => CreateChatService());
+  locator.registerLazySingleton(() => ChatService());
   locator.registerLazySingleton(() => ChatRepository());
 
   //Services

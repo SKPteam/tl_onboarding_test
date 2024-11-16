@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_firebase_test/api/endpoints/endpoints.dart';
 import 'package:flutter_firebase_test/data/models/create_chat.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class CreateChatService {
+class ChatService {
   final Dio _dio = Dio();
-  final FlutterSecureStorage _storage = const FlutterSecureStorage();
+  //final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   Future<CreateChat?> createChat({
     required int consultantId,
@@ -21,6 +20,7 @@ class CreateChatService {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
+        print("chat response: $response.data");
         return CreateChat.fromJson(response.data);
       }
       return null;

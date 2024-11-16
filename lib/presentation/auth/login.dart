@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends GetView<LoginController> {
   LoginPage({super.key});
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_firebase_test/data/models/create_chat.dart';
 import 'package:flutter_firebase_test/data/repositories/chat.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -5,20 +7,27 @@ import 'package:get_it/get_it.dart';
 class ChatController extends GetxController {
   final ChatRepository chatRepository = GetIt.instance.get<ChatRepository>();
 
+  // @override
+  // void onInit() {
+  //   // TODO: implement onInit
+
+  //   super.onInit();
+  // }
+
   final _state = ChatState().obs;
   ChatState get state => _state.value;
 
   RxBool isLoading = false.obs;
   RxString errorMessage = ''.obs;
 
-  Future<void> createChat(int consultantId) async {
+  Future<CreateChat> createChat(
+      {required int consultantId, required int clientId}) async {
     try {
       isLoading.value = true;
       _state.value = state.copyWith(status: ChatStatus.loading);
 
       final chat = await chatRepository.createNewChat(
-        consultantId: consultantId,
-      );
+          consultantId: consultantId, clientId: clientId);
 
       if (chat != null) {
         final updatedChats = [...state.chats, chat];
@@ -28,7 +37,9 @@ class ChatController extends GetxController {
         );
         // Navigate to chat screen or update UI
         Get.toNamed('/chat-detail', arguments: chat);
+        return chat;
       }
+      throw Exception("Failed to create chat");
     } catch (e) {
       _state.value = state.copyWith(
         status: ChatStatus.error,
@@ -40,6 +51,7 @@ class ChatController extends GetxController {
         e.toString(),
         snackPosition: SnackPosition.BOTTOM,
       );
+      rethrow;
     } finally {
       isLoading.value = false;
     }

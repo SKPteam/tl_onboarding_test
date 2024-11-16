@@ -5,20 +5,15 @@ import 'package:flutter_firebase_test/data/repositories/storage.dart';
 import 'package:get_it/get_it.dart';
 
 class ChatRepository {
-  final CreateChatService createChatService =
-      GetIt.instance.get<CreateChatService>();
+  final ChatService chatService = GetIt.instance.get<ChatService>();
   final UserRepository userRepository = GetIt.instance.get<UserRepository>();
 
   Future<CreateChat?> createNewChat({
     required int consultantId,
+    required int clientId,
   }) async {
-    final clientId = await userRepository.getClientId();
-    if (clientId == null) {
-      throw Exception('Client ID not found. Please login again.');
-    }
-
     try {
-      return await createChatService.createChat(
+      return await chatService.createChat(
         consultantId: consultantId,
         clientId: clientId,
       );

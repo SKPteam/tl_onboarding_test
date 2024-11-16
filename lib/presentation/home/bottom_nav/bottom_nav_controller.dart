@@ -16,7 +16,7 @@ class BottomNavController extends GetxController {
   final List<Widget> pages = [
     const Homepage(),
     const Journal(),
-    Chats(),
+    // Chats(),
     const Profile(),
     const More(),
   ];
@@ -29,5 +29,11 @@ class BottomNavController extends GetxController {
   // Reset to home page
   void resetValues() {
     _currentIndex.value = 0;
+  }
+
+  final RxBool isActive = false.obs;
+
+  void toggleActive() {
+    isActive.value = !isActive.value;
   }
 }
