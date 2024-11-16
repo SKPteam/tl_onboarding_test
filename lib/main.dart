@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_test/home_page/home_page.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_firebase_test/core/constants/app_colors.dart';
+import 'package:flutter_firebase_test/core/dependency_injection/locator.dart';
+import 'package:flutter_firebase_test/presentation/auth/login.dart';
+import 'package:flutter_firebase_test/presentation/auth/login_controller.dart';
+import 'package:flutter_firebase_test/presentation/home/bottom_nav/bottom_nav.dart';
+import 'package:flutter_firebase_test/presentation/home/bottom_nav/bottom_nav_controller.dart';
+import 'package:flutter_firebase_test/presentation/home/chats/chat_controller.dart';
+import 'package:flutter_firebase_test/presentation/home/chats/chats.dart';
+import 'package:flutter_firebase_test/presentation/home/home_page/home_page.dart';
+import 'package:flutter_firebase_test/presentation/home/home_page/home_page_controller.dart';
+import 'package:get/get.dart';
 
 void main() {
+  setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      //systemNavigationBarColor: AppColors.black,
+      statusBarColor: AppColors.white));
   runApp(const MyApp());
 }
 
@@ -11,14 +28,39 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      initialBinding: BindingsBuilder(() {
+        Get.lazyPut(() => HomePageController());
+        Get.lazyPut(() => LoginController());
+        Get.lazyPut(() => BottomNavController());
+        Get.lazyPut(() => ChatController());
+      }),
+      //  title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        progressIndicatorTheme:
+            const ProgressIndicatorThemeData(color: AppColors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.white),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      getPages: [
+        GetPage(
+          name: "/home",
+          page: () => const Homepage(),
+          //binding: LoginBinding(),
+        ),
+        GetPage(
+          name: "/bottomNav",
+          page: () => BottomNav(),
+          //  binding: BottomNavBinding()
+        ),
+        GetPage(
+          name: "/chatbot",
+          page: () => Chats(),
+          //  binding: BottomNavBinding()
+        )
+      ],
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(),
     );
   }
 }
-
