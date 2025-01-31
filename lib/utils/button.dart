@@ -99,7 +99,7 @@ class AppButton extends StatelessWidget {
           ? null
           : () => onPressed(),
       child: Container(
-        height: 55.h,
+        height: 50.h,
         padding: padding ??
             EdgeInsets.symmetric(
               vertical: 13.0.h,
