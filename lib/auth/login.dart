@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_test/utils/button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginView extends StatefulWidget {
@@ -72,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    padding: const EdgeInsets.only(top: 11.5, bottom: 11.5),
+                    padding: EdgeInsets.only(top: 11.5.w, bottom: 11.5.w),
                     child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       //controller: model.email,
@@ -81,10 +82,10 @@ class _LoginViewState extends State<LoginView> {
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
                               color: Color(0xffAAAAAA)),
-                          contentPadding: const EdgeInsets.only(
-                            top: 10,
-                            bottom: 10,
-                            left: 5,
+                          contentPadding: EdgeInsets.only(
+                            top: 10.w,
+                            bottom: 10.w,
+                            left: 8.w,
                           ),
                           border: OutlineInputBorder(
                             borderSide: const BorderSide(
@@ -152,9 +153,13 @@ class _LoginViewState extends State<LoginView> {
                               _isHidden = !_isHidden;
                             });
                           },
-                          icon: Icon(_isHidden
-                              ? Icons.visibility
-                              : Icons.visibility_off),
+                          icon: Icon(
+                            _isHidden
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            size: 20,
+                            color: const Color(0xff656565),
+                          ),
                         ),
                         hintStyle: const TextStyle(
                             fontSize: 13,
@@ -163,7 +168,7 @@ class _LoginViewState extends State<LoginView> {
                         contentPadding: EdgeInsets.only(
                           top: 10.w,
                           bottom: 10.w,
-                          left: 5.w,
+                          left: 8.w,
                         ),
                         border: OutlineInputBorder(
                           borderSide: const BorderSide(
@@ -172,7 +177,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        hintText: "******",
+                        hintText: "**********",
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
                             width: 1,
@@ -199,6 +204,15 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                 ),
+                 SizedBox(
+                  height: 200.5.h,
+                ),
+                AppButton(
+                              title: 'Next',
+                              onPressed: () {
+                                
+                              },
+                            ),
               ],
             ),
           ),
