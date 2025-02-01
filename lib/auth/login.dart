@@ -211,18 +211,23 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                   SizedBox(
-                    height: 200.5.h,
+                    height: 350.5.h,
                   ),
-                  AppButton(
-                    title: controller.isLoading.value == true
-                        ? "Logging in..."
-                        : "Next",
-                    onPressed: () {
-                      if (controller.formKey.currentState!.validate()) {
-                        controller.login();
-                      }
-                    },
-                  ),
+                  controller.isLoading.value == true
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Color(0xff388D4E),
+                          ),
+                        )
+                      : AppButton(
+                          title: "Next",
+                          onPressed: () {
+                            if (controller.formKey.currentState!.validate()) {
+                              controller.login();
+                            }
+                          },
+                        ),
                 ],
               ),
             ),

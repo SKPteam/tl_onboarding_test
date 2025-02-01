@@ -46,8 +46,8 @@ class _HomePageState extends State<HomePage> {
             _isExpanded ? const Color(0xffFBFBFB) : const Color(0xffFBFBFB),
         body: _pages[_selectedIndex],
         bottomNavigationBar: BottomAppBar(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          height: 60,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0.001),
+          height: 80,
           color:
               _isExpanded ? const Color(0x00000fff) : const Color(0xffFFFFFF),
           shape: const CircularNotchedRectangle(),

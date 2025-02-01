@@ -4,6 +4,7 @@ import 'package:flutter_firebase_test/utils/app_snackbars.dart';
 import 'package:flutter_firebase_test/utils/local_storage.dart';
 import 'package:flutter_firebase_test/utils/logger.dart';
 import 'package:get/get.dart' as getx;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BaseService {
   static const String baseApi =
@@ -26,19 +27,18 @@ class BaseService {
 
   Future<Response> request(String url,
       {dynamic body, required String method}) async {
-    var token = await LocalStorage.getTokenShared();
+    // var token = await LocalStorage.getTokenShared();
+
     try {
       print("Sending request to: $url");
       if (body is Function) {
         body = await body(); // Rebuild FormData if body is a function
       }
 
-      Response res = await _dio.request(url,
+      Response res = await _dio.post(url,
           data: body,
-          options: Options(
-              method: method,
-              headers:
-                  token != null ? {'authorization': 'Bearer $token'} : null));
+          options:
+              Options(method: method, headers: {'authorization': 'Bearer '}));
 
       print("Request completed with status code: ${res.statusCode}");
 
@@ -51,6 +51,11 @@ class BaseService {
       rethrow;
     }
   }
+}
+
+Future<String?> getAuthToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString("auth_token");
 }
 
 handleError(DioException error) {
