@@ -12,9 +12,9 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  String email = 'abc@gmail.com';
+  String email = '';
 
-  String password = 'password';
+  String password = '';
 
   bool isLoading = false;
 

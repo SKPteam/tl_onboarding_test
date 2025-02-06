@@ -10,8 +10,8 @@ class Api {
     try {
       Response res = await dio
           .post('client/login', data: {'email': email, 'password': password});
-      dio.options.headers
-          .addAll({'Authorization': "Bearer ${res.data['data']['auth_token']}"});
+      dio.options.headers.addAll(
+          {'Authorization': "Bearer ${res.data['data']['auth_token']}"});
       return User.fromMap(res.data['data'] as Map<String, dynamic>);
     } on DioException catch (e) {
       if (e.response != null) {
